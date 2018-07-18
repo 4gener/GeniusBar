@@ -143,10 +143,27 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Models\RepairCategory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authorization.cs" />
+    <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\GeniusBarContext.cs" />
+    <Compile Include="Models\LaptopBrand.cs" />
+    <Compile Include="Models\LaptopModel.cs" />
+    <Compile Include="Models\RecycleEvaluationCategory.cs" />
+    <Compile Include="Models\RecycleEvaluationChoice.cs" />
+    <Compile Include="Models\RecycleOrder.cs" />
+    <Compile Include="Models\RecycleOrder_RecycleEvaluatonChoice.cs" />
+    <Compile Include="Models\RepairChoice.cs" />
+    <Compile Include="Models\RepairOrder.cs" />
+    <Compile Include="Models\RepairOrder_RepairChoice.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Role_Authorization.cs" />
+    <Compile Include="Models\ServiceAddress.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WebBanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
