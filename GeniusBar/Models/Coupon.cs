@@ -7,6 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeniusBar.Models
 {
+    public enum CouponType
+    {
+        DISCOUNT,
+        REDUCTION
+    }
+
     public class Coupon
     {
         public int ID { get; set; }
@@ -16,7 +22,7 @@ namespace GeniusBar.Models
         public string Name { get; set; }
 
         [Required]
-        public byte Type { get; set; }
+        public CouponType Type { get; set; }
 
         [Required]
         [DataType("decimal(5,2)")]

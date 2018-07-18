@@ -7,6 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeniusBar.Models
 {
+    public enum RepairOrderState
+    {
+        REPAIRING,
+        REPAIRED,
+        DELIVERING
+    }
+
     public class RepairOrder
     {
         public int ID { get; set; }

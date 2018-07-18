@@ -8,6 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeniusBar.Models
 {
+    public enum RecycleOrderState
+    {
+        UNPAID,
+        PAID,
+        COMPLETED,
+        DELIVERING
+    }
+
     public class RecycleOrder
     {
         public int ID { get; set; }
@@ -29,7 +37,7 @@ namespace GeniusBar.Models
         public decimal Price { get; set; }
 
         [Required]
-        public byte State { get; set; }
+        public RecycleOrderState State { get; set; }
 
         [Required]
         [MaxLength(200)]
