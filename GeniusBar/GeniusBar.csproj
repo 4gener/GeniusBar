@@ -160,6 +160,11 @@
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
+    <Compile Include="Migrations\201807221646169_Initial.cs" />
+    <Compile Include="Migrations\201807221646169_Initial.Designer.cs">
+      <DependentUpon>201807221646169_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +200,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807221646169_Initial.resx">
+      <DependentUpon>201807221646169_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
