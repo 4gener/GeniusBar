@@ -24,5 +24,36 @@ namespace GeniusBar.Models
             modelBuilder.HasDefaultSchema("SYSTEM");          
         }
 
+        public System.Data.Entity.DbSet<GeniusBar.Models.Authorization> Authorizations { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.Coupon> Coupons { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.LaptopBrand> LaptopBrands { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.LaptopModel> LaptopModels { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RecycleEvaluationCategory> RecycleEvaluationCategories { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RecycleEvaluationChoice> RecycleEvaluationChoices { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RecycleOrder> RecycleOrders { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RecycleOrder_RecycleEvaluatonChoice> RecycleOrder_RecycleEvaluatonChoice { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RepairCategory> RepairCategories { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RepairChoice> RepairChoices { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RepairOrder> RepairOrders { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.RepairOrder_RepairChoice> RepairOrder_RepairChoice { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.Role> Roles { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.Role_Authorization> Role_Authorization { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.WebBanner> WebBanners { get; set; }
     }
 }
