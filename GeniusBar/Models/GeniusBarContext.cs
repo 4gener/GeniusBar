@@ -55,5 +55,7 @@ namespace GeniusBar.Models
         public System.Data.Entity.DbSet<GeniusBar.Models.Role_Authorization> Role_Authorization { get; set; }
 
         public System.Data.Entity.DbSet<GeniusBar.Models.WebBanner> WebBanners { get; set; }
+
+        public System.Data.Entity.DbSet<GeniusBar.Models.ServiceAddress> ServiceAddresses { get; set; }
     }
 }
