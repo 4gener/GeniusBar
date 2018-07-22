@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GeniusBar.Models;
@@ -17,16 +16,16 @@ namespace GeniusBar.Controllers
         private GeniusBarContext db = new GeniusBarContext();
 
         // GET: api/Authorizations
-        public IQueryable<Authorization> GetAuthorizations()
+        public IQueryable<GeniusBar.Models.Authorization> GetAuthorizations()
         {
             return db.Authorizations;
         }
 
         // GET: api/Authorizations/5
-        [ResponseType(typeof(Authorization))]
+        [ResponseType(typeof(GeniusBar.Models.Authorization))]
         public IHttpActionResult GetAuthorization(int id)
         {
-            Authorization authorization = db.Authorizations.Find(id);
+            GeniusBar.Models.Authorization authorization = db.Authorizations.Find(id);
             if (authorization == null)
             {
                 return NotFound();
@@ -37,7 +36,7 @@ namespace GeniusBar.Controllers
 
         // PUT: api/Authorizations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAuthorization(int id, Authorization authorization)
+        public IHttpActionResult PutAuthorization(int id, GeniusBar.Models.Authorization authorization)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +70,8 @@ namespace GeniusBar.Controllers
         }
 
         // POST: api/Authorizations
-        [ResponseType(typeof(Authorization))]
-        public IHttpActionResult PostAuthorization(Authorization authorization)
+        [ResponseType(typeof(GeniusBar.Models.Authorization))]
+        public IHttpActionResult PostAuthorization(GeniusBar.Models.Authorization authorization)
         {
             if (!ModelState.IsValid)
             {
@@ -86,10 +85,10 @@ namespace GeniusBar.Controllers
         }
 
         // DELETE: api/Authorizations/5
-        [ResponseType(typeof(Authorization))]
+        [ResponseType(typeof(GeniusBar.Models.Authorization))]
         public IHttpActionResult DeleteAuthorization(int id)
         {
-            Authorization authorization = db.Authorizations.Find(id);
+            GeniusBar.Models.Authorization authorization = db.Authorizations.Find(id);
             if (authorization == null)
             {
                 return NotFound();
