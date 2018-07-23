@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 
 namespace GeniusBar.Models
 {
@@ -15,6 +17,7 @@ namespace GeniusBar.Models
 
         [Required]
         [MaxLength(50)]
+        [Index(IsUnique=true)]
         public string Email { get; set; }
 
         [Required]
@@ -23,10 +26,14 @@ namespace GeniusBar.Models
         public string Password { get; set; }
 
         [Required]
+        [DefaultValue(1)]
         public int Role_ID { get; set; }
 
         [ForeignKey("Role_ID")]
         public virtual Role Role { get; set; }
+        
+        [JsonIgnore]
+        public string Cookie { get; set; }
 
         [JsonIgnore]
         public ICollection<RecycleOrder> RecycleOrders { get; set; }
@@ -36,5 +43,7 @@ namespace GeniusBar.Models
         
         [JsonIgnore]
         public ICollection<ServiceAddress> ServiceAddresses { get; set; }
+        
+        
     }
 }
