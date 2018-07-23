@@ -21,7 +21,7 @@ namespace GeniusBar.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("SYSTEM");          
+            modelBuilder.HasDefaultSchema("GENIUSBAR");          
         }
 
         public System.Data.Entity.DbSet<GeniusBar.Models.Authorization> Authorizations { get; set; }

@@ -8,7 +8,7 @@ namespace GeniusBar.Migrations
         public override void Up()
         {
             CreateTable(
-                "SYSTEM.Authorizations",
+                "GENIUSBAR.Authorizations",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -17,20 +17,20 @@ namespace GeniusBar.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "SYSTEM.Role_Authorization",
+                "GENIUSBAR.Role_Authorization",
                 c => new
                     {
                         Role_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                         Auth_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => new { t.Role_ID, t.Auth_ID })
-                .ForeignKey("SYSTEM.Authorizations", t => t.Auth_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Roles", t => t.Role_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Authorizations", t => t.Auth_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Roles", t => t.Role_ID, cascadeDelete: true)
                 .Index(t => t.Role_ID)
                 .Index(t => t.Auth_ID);
             
             CreateTable(
-                "SYSTEM.Roles",
+                "GENIUSBAR.Roles",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -39,7 +39,7 @@ namespace GeniusBar.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "SYSTEM.Users",
+                "GENIUSBAR.Users",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -49,11 +49,11 @@ namespace GeniusBar.Migrations
                         Role_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.Roles", t => t.Role_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Roles", t => t.Role_ID, cascadeDelete: true)
                 .Index(t => t.Role_ID);
             
             CreateTable(
-                "SYSTEM.RecycleOrders",
+                "GENIUSBAR.RecycleOrders",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -70,28 +70,28 @@ namespace GeniusBar.Migrations
                         User_ID = c.Decimal(precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.Users", t => t.Customer_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Users", t => t.Engineer_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Users", t => t.User_ID)
+                .ForeignKey("GENIUSBAR.Users", t => t.Customer_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.Engineer_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.User_ID)
                 .Index(t => t.Customer_ID)
                 .Index(t => t.Engineer_ID)
                 .Index(t => t.User_ID);
             
             CreateTable(
-                "SYSTEM.RecycleOrder_RecycleEvaluatonChoice",
+                "GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice",
                 c => new
                     {
                         Rec_order_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                         Rec_eval_choice_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => new { t.Rec_order_ID, t.Rec_eval_choice_ID })
-                .ForeignKey("SYSTEM.RecycleEvaluationChoices", t => t.Rec_eval_choice_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.RecycleOrders", t => t.Rec_order_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RecycleEvaluationChoices", t => t.Rec_eval_choice_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RecycleOrders", t => t.Rec_order_ID, cascadeDelete: true)
                 .Index(t => t.Rec_order_ID)
                 .Index(t => t.Rec_eval_choice_ID);
             
             CreateTable(
-                "SYSTEM.RecycleEvaluationChoices",
+                "GENIUSBAR.RecycleEvaluationChoices",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -100,11 +100,11 @@ namespace GeniusBar.Migrations
                         Category_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.RecycleEvaluationCategories", t => t.Category_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RecycleEvaluationCategories", t => t.Category_ID, cascadeDelete: true)
                 .Index(t => t.Category_ID);
             
             CreateTable(
-                "SYSTEM.RecycleEvaluationCategories",
+                "GENIUSBAR.RecycleEvaluationCategories",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -114,11 +114,11 @@ namespace GeniusBar.Migrations
                         Model_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.LaptopModels", t => t.Model_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.LaptopModels", t => t.Model_ID, cascadeDelete: true)
                 .Index(t => t.Model_ID);
             
             CreateTable(
-                "SYSTEM.LaptopModels",
+                "GENIUSBAR.LaptopModels",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -128,11 +128,11 @@ namespace GeniusBar.Migrations
                         Brand_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.LaptopBrands", t => t.Brand_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.LaptopBrands", t => t.Brand_ID, cascadeDelete: true)
                 .Index(t => t.Brand_ID);
             
             CreateTable(
-                "SYSTEM.LaptopBrands",
+                "GENIUSBAR.LaptopBrands",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -142,7 +142,7 @@ namespace GeniusBar.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "SYSTEM.RepairChoices",
+                "GENIUSBAR.RepairChoices",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -152,13 +152,13 @@ namespace GeniusBar.Migrations
                         Model_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.LaptopModels", t => t.Model_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.RepairCategories", t => t.Category_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.LaptopModels", t => t.Model_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RepairCategories", t => t.Category_ID, cascadeDelete: true)
                 .Index(t => t.Category_ID)
                 .Index(t => t.Model_ID);
             
             CreateTable(
-                "SYSTEM.RepairCategories",
+                "GENIUSBAR.RepairCategories",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -169,20 +169,20 @@ namespace GeniusBar.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "SYSTEM.RepairOrder_RepairChoice",
+                "GENIUSBAR.RepairOrder_RepairChoice",
                 c => new
                     {
                         Rep_order_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                         Rep_choice_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => new { t.Rep_order_ID, t.Rep_choice_ID })
-                .ForeignKey("SYSTEM.RepairChoices", t => t.Rep_choice_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.RepairOrders", t => t.Rep_order_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RepairChoices", t => t.Rep_choice_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.RepairOrders", t => t.Rep_order_ID, cascadeDelete: true)
                 .Index(t => t.Rep_order_ID)
                 .Index(t => t.Rep_choice_ID);
             
             CreateTable(
-                "SYSTEM.RepairOrders",
+                "GENIUSBAR.RepairOrders",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -200,17 +200,17 @@ namespace GeniusBar.Migrations
                         User_ID = c.Decimal(precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.Coupons", t => t.Coupon_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Users", t => t.Customer_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Users", t => t.Engineer_ID, cascadeDelete: true)
-                .ForeignKey("SYSTEM.Users", t => t.User_ID)
+                .ForeignKey("GENIUSBAR.Coupons", t => t.Coupon_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.Customer_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.Engineer_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.User_ID)
                 .Index(t => t.Customer_ID)
                 .Index(t => t.Coupon_ID)
                 .Index(t => t.Engineer_ID)
                 .Index(t => t.User_ID);
             
             CreateTable(
-                "SYSTEM.Coupons",
+                "GENIUSBAR.Coupons",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -222,7 +222,7 @@ namespace GeniusBar.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "SYSTEM.ServiceAddresses",
+                "GENIUSBAR.ServiceAddresses",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -231,11 +231,11 @@ namespace GeniusBar.Migrations
                         Customer_ID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("SYSTEM.Users", t => t.Customer_ID, cascadeDelete: true)
+                .ForeignKey("GENIUSBAR.Users", t => t.Customer_ID, cascadeDelete: true)
                 .Index(t => t.Customer_ID);
             
             CreateTable(
-                "SYSTEM.WebBanners",
+                "GENIUSBAR.WebBanners",
                 c => new
                     {
                         ID = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
@@ -248,63 +248,63 @@ namespace GeniusBar.Migrations
         
         public override void Down()
         {
-            DropForeignKey("SYSTEM.ServiceAddresses", "Customer_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.Users", "Role_ID", "SYSTEM.Roles");
-            DropForeignKey("SYSTEM.RepairOrders", "User_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RecycleOrders", "User_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RecycleOrders", "Engineer_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RecycleOrders", "Customer_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RecycleOrder_RecycleEvaluatonChoice", "Rec_order_ID", "SYSTEM.RecycleOrders");
-            DropForeignKey("SYSTEM.RecycleOrder_RecycleEvaluatonChoice", "Rec_eval_choice_ID", "SYSTEM.RecycleEvaluationChoices");
-            DropForeignKey("SYSTEM.RecycleEvaluationChoices", "Category_ID", "SYSTEM.RecycleEvaluationCategories");
-            DropForeignKey("SYSTEM.RecycleEvaluationCategories", "Model_ID", "SYSTEM.LaptopModels");
-            DropForeignKey("SYSTEM.RepairOrders", "Engineer_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RepairOrders", "Customer_ID", "SYSTEM.Users");
-            DropForeignKey("SYSTEM.RepairOrder_RepairChoice", "Rep_order_ID", "SYSTEM.RepairOrders");
-            DropForeignKey("SYSTEM.RepairOrders", "Coupon_ID", "SYSTEM.Coupons");
-            DropForeignKey("SYSTEM.RepairOrder_RepairChoice", "Rep_choice_ID", "SYSTEM.RepairChoices");
-            DropForeignKey("SYSTEM.RepairChoices", "Category_ID", "SYSTEM.RepairCategories");
-            DropForeignKey("SYSTEM.RepairChoices", "Model_ID", "SYSTEM.LaptopModels");
-            DropForeignKey("SYSTEM.LaptopModels", "Brand_ID", "SYSTEM.LaptopBrands");
-            DropForeignKey("SYSTEM.Role_Authorization", "Role_ID", "SYSTEM.Roles");
-            DropForeignKey("SYSTEM.Role_Authorization", "Auth_ID", "SYSTEM.Authorizations");
-            DropIndex("SYSTEM.ServiceAddresses", new[] { "Customer_ID" });
-            DropIndex("SYSTEM.RepairOrders", new[] { "User_ID" });
-            DropIndex("SYSTEM.RepairOrders", new[] { "Engineer_ID" });
-            DropIndex("SYSTEM.RepairOrders", new[] { "Coupon_ID" });
-            DropIndex("SYSTEM.RepairOrders", new[] { "Customer_ID" });
-            DropIndex("SYSTEM.RepairOrder_RepairChoice", new[] { "Rep_choice_ID" });
-            DropIndex("SYSTEM.RepairOrder_RepairChoice", new[] { "Rep_order_ID" });
-            DropIndex("SYSTEM.RepairChoices", new[] { "Model_ID" });
-            DropIndex("SYSTEM.RepairChoices", new[] { "Category_ID" });
-            DropIndex("SYSTEM.LaptopModels", new[] { "Brand_ID" });
-            DropIndex("SYSTEM.RecycleEvaluationCategories", new[] { "Model_ID" });
-            DropIndex("SYSTEM.RecycleEvaluationChoices", new[] { "Category_ID" });
-            DropIndex("SYSTEM.RecycleOrder_RecycleEvaluatonChoice", new[] { "Rec_eval_choice_ID" });
-            DropIndex("SYSTEM.RecycleOrder_RecycleEvaluatonChoice", new[] { "Rec_order_ID" });
-            DropIndex("SYSTEM.RecycleOrders", new[] { "User_ID" });
-            DropIndex("SYSTEM.RecycleOrders", new[] { "Engineer_ID" });
-            DropIndex("SYSTEM.RecycleOrders", new[] { "Customer_ID" });
-            DropIndex("SYSTEM.Users", new[] { "Role_ID" });
-            DropIndex("SYSTEM.Role_Authorization", new[] { "Auth_ID" });
-            DropIndex("SYSTEM.Role_Authorization", new[] { "Role_ID" });
-            DropTable("SYSTEM.WebBanners");
-            DropTable("SYSTEM.ServiceAddresses");
-            DropTable("SYSTEM.Coupons");
-            DropTable("SYSTEM.RepairOrders");
-            DropTable("SYSTEM.RepairOrder_RepairChoice");
-            DropTable("SYSTEM.RepairCategories");
-            DropTable("SYSTEM.RepairChoices");
-            DropTable("SYSTEM.LaptopBrands");
-            DropTable("SYSTEM.LaptopModels");
-            DropTable("SYSTEM.RecycleEvaluationCategories");
-            DropTable("SYSTEM.RecycleEvaluationChoices");
-            DropTable("SYSTEM.RecycleOrder_RecycleEvaluatonChoice");
-            DropTable("SYSTEM.RecycleOrders");
-            DropTable("SYSTEM.Users");
-            DropTable("SYSTEM.Roles");
-            DropTable("SYSTEM.Role_Authorization");
-            DropTable("SYSTEM.Authorizations");
+            DropForeignKey("GENIUSBAR.ServiceAddresses", "Customer_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.Users", "Role_ID", "GENIUSBAR.Roles");
+            DropForeignKey("GENIUSBAR.RepairOrders", "User_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RecycleOrders", "User_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RecycleOrders", "Engineer_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RecycleOrders", "Customer_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice", "Rec_order_ID", "GENIUSBAR.RecycleOrders");
+            DropForeignKey("GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice", "Rec_eval_choice_ID", "GENIUSBAR.RecycleEvaluationChoices");
+            DropForeignKey("GENIUSBAR.RecycleEvaluationChoices", "Category_ID", "GENIUSBAR.RecycleEvaluationCategories");
+            DropForeignKey("GENIUSBAR.RecycleEvaluationCategories", "Model_ID", "GENIUSBAR.LaptopModels");
+            DropForeignKey("GENIUSBAR.RepairOrders", "Engineer_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RepairOrders", "Customer_ID", "GENIUSBAR.Users");
+            DropForeignKey("GENIUSBAR.RepairOrder_RepairChoice", "Rep_order_ID", "GENIUSBAR.RepairOrders");
+            DropForeignKey("GENIUSBAR.RepairOrders", "Coupon_ID", "GENIUSBAR.Coupons");
+            DropForeignKey("GENIUSBAR.RepairOrder_RepairChoice", "Rep_choice_ID", "GENIUSBAR.RepairChoices");
+            DropForeignKey("GENIUSBAR.RepairChoices", "Category_ID", "GENIUSBAR.RepairCategories");
+            DropForeignKey("GENIUSBAR.RepairChoices", "Model_ID", "GENIUSBAR.LaptopModels");
+            DropForeignKey("GENIUSBAR.LaptopModels", "Brand_ID", "GENIUSBAR.LaptopBrands");
+            DropForeignKey("GENIUSBAR.Role_Authorization", "Role_ID", "GENIUSBAR.Roles");
+            DropForeignKey("GENIUSBAR.Role_Authorization", "Auth_ID", "GENIUSBAR.Authorizations");
+            DropIndex("GENIUSBAR.ServiceAddresses", new[] { "Customer_ID" });
+            DropIndex("GENIUSBAR.RepairOrders", new[] { "User_ID" });
+            DropIndex("GENIUSBAR.RepairOrders", new[] { "Engineer_ID" });
+            DropIndex("GENIUSBAR.RepairOrders", new[] { "Coupon_ID" });
+            DropIndex("GENIUSBAR.RepairOrders", new[] { "Customer_ID" });
+            DropIndex("GENIUSBAR.RepairOrder_RepairChoice", new[] { "Rep_choice_ID" });
+            DropIndex("GENIUSBAR.RepairOrder_RepairChoice", new[] { "Rep_order_ID" });
+            DropIndex("GENIUSBAR.RepairChoices", new[] { "Model_ID" });
+            DropIndex("GENIUSBAR.RepairChoices", new[] { "Category_ID" });
+            DropIndex("GENIUSBAR.LaptopModels", new[] { "Brand_ID" });
+            DropIndex("GENIUSBAR.RecycleEvaluationCategories", new[] { "Model_ID" });
+            DropIndex("GENIUSBAR.RecycleEvaluationChoices", new[] { "Category_ID" });
+            DropIndex("GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice", new[] { "Rec_eval_choice_ID" });
+            DropIndex("GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice", new[] { "Rec_order_ID" });
+            DropIndex("GENIUSBAR.RecycleOrders", new[] { "User_ID" });
+            DropIndex("GENIUSBAR.RecycleOrders", new[] { "Engineer_ID" });
+            DropIndex("GENIUSBAR.RecycleOrders", new[] { "Customer_ID" });
+            DropIndex("GENIUSBAR.Users", new[] { "Role_ID" });
+            DropIndex("GENIUSBAR.Role_Authorization", new[] { "Auth_ID" });
+            DropIndex("GENIUSBAR.Role_Authorization", new[] { "Role_ID" });
+            DropTable("GENIUSBAR.WebBanners");
+            DropTable("GENIUSBAR.ServiceAddresses");
+            DropTable("GENIUSBAR.Coupons");
+            DropTable("GENIUSBAR.RepairOrders");
+            DropTable("GENIUSBAR.RepairOrder_RepairChoice");
+            DropTable("GENIUSBAR.RepairCategories");
+            DropTable("GENIUSBAR.RepairChoices");
+            DropTable("GENIUSBAR.LaptopBrands");
+            DropTable("GENIUSBAR.LaptopModels");
+            DropTable("GENIUSBAR.RecycleEvaluationCategories");
+            DropTable("GENIUSBAR.RecycleEvaluationChoices");
+            DropTable("GENIUSBAR.RecycleOrder_RecycleEvaluatonChoice");
+            DropTable("GENIUSBAR.RecycleOrders");
+            DropTable("GENIUSBAR.Users");
+            DropTable("GENIUSBAR.Roles");
+            DropTable("GENIUSBAR.Role_Authorization");
+            DropTable("GENIUSBAR.Authorizations");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace GeniusBar.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201807221646169_Initial"; }
+            get { return "201807230138409_Initial"; }
         }
         
         string IMigrationMetadata.Source
