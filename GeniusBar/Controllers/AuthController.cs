@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
@@ -15,7 +16,7 @@ namespace GeniusBar.Controllers
     public class AuthController : ApiController
     {
         private GeniusBarContext db = new GeniusBarContext();
-        
+
         public class RegisterData
         {
             public string Name;
@@ -43,7 +44,10 @@ namespace GeniusBar.Controllers
                 db.Users.Add(user);
                 db.SaveChanges();
 
-                return Request.CreateResponse(user);
+                HttpResponseMessage res = Request.CreateResponse(user);
+                var cookie = new CookieHeaderValue("GB", user.Cookie);
+                res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+                return res;
             }
             catch (Exception e)
             {
@@ -54,22 +58,25 @@ namespace GeniusBar.Controllers
                 });
             }
         }
-        
+
         public class LoginData
         {
             public string Email;
             public string Password;
         }
-        
+
         [HttpPost]
         [Route("api/login")]
         public HttpResponseMessage Register(LoginData data)
         {
             User user = db.Users.First(u => u.Email == data.Email);
-            
+
             if (BCrypt.Net.BCrypt.Verify(data.Password, user.Password))
             {
-                return Request.CreateResponse(user);
+                HttpResponseMessage res = Request.CreateResponse(user);
+                var cookie = new CookieHeaderValue("GB", user.Cookie);
+                res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+                return res;
             }
             else
             {
