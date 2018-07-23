@@ -168,13 +168,9 @@
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
-    <Compile Include="Migrations\201807230138409_Initial.cs" />
-    <Compile Include="Migrations\201807230138409_Initial.Designer.cs">
-      <DependentUpon>201807230138409_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807230731524_update_user.cs" />
-    <Compile Include="Migrations\201807230731524_update_user.Designer.cs">
-      <DependentUpon>201807230731524_update_user.cs</DependentUpon>
+    <Compile Include="Migrations\201807230834581_Initial.cs" />
+    <Compile Include="Migrations\201807230834581_Initial.Designer.cs">
+      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
@@ -216,11 +212,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807230138409_Initial.resx">
-      <DependentUpon>201807230138409_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807230731524_update_user.resx">
-      <DependentUpon>201807230731524_update_user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807230834581_Initial.resx">
+      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
