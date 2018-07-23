@@ -517,7 +517,7 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-GeniusBar/_bin_deployableAssemblies/amd64/*
+GeniusBar/_bin_deployableAssemblies/*
 
 
 # End of https://www.gitignore.io/api/rider,csharp,aspnetcore
