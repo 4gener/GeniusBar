@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace GeniusBar.Models
 {
@@ -26,11 +27,12 @@ namespace GeniusBar.Models
         public int Model_ID { get; set; }
 
         [ForeignKey("Category_ID")]
-        public RepairCategory RepairCategory { get; set; }
+        public virtual RepairCategory RepairCategory { get; set; }
 
         [ForeignKey("Model_ID")]
-        public LaptopModel LaptopModel { get; set; }
+        public virtual LaptopModel LaptopModel { get; set; }
 
+        [JsonIgnore]
         public ICollection<RepairOrder_RepairChoice> RepairOrder_RepairChoices { get; set; }
 
     }

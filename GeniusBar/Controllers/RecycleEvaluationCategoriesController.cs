@@ -17,6 +17,8 @@ namespace GeniusBar.Controllers
         private GeniusBarContext db = new GeniusBarContext();
 
         // GET: api/RecycleEvaluationCategories
+        //[HttpGet]
+        //[Route("api/recycle/")]
         public IQueryable<RecycleEvaluationCategory> GetRecycleEvaluationCategories()
         {
             return db.RecycleEvaluationCategories;

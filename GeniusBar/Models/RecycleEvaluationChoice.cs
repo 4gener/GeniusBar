@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace GeniusBar.Models
 {
@@ -22,8 +23,9 @@ namespace GeniusBar.Models
         [ForeignKey("RecycleEvaluationCategory")]
         [Required]
         public int Category_ID { get; set; }
-        public RecycleEvaluationCategory RecycleEvaluationCategory { get; set; }
+        public virtual RecycleEvaluationCategory RecycleEvaluationCategory { get; set; }
 
+        [JsonIgnore]
         public ICollection<RecycleOrder_RecycleEvaluatonChoice> RecycleOrder_RecycleEvaluatonChoices { get; set; }
     }
 }
