@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace GeniusBar.Models
 {
@@ -15,7 +16,7 @@ namespace GeniusBar.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        [JsonIgnore]
         public ICollection<Role_Authorization> Role_Authorizations { get; set; }
     }
 }
