@@ -39,6 +39,22 @@ namespace GeniusBar.Controllers
                     .ToLower(),
             };
 
+            if(db.Users.Count(e => e.Name == data.Name) > 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
+                {
+                    message = "换一个名字哦"
+                });
+            }
+
+            if (db.Users.Count(e => e.Email == data.Email) > 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
+                {
+                    message = "已经注册过啦"
+                });
+            }
+
             try
             {
                 db.Users.Add(user);
