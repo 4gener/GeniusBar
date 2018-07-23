@@ -1,4 +1,4 @@
-﻿namespace GeniusBar.Migrations
+namespace GeniusBar.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(GeniusBar.Models.GeniusBarContext context)
