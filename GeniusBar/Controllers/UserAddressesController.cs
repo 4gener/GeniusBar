@@ -20,8 +20,10 @@ namespace GeniusBar.Controllers
         {
             // To be implemented 
             // throw new System.NotImplementedException();
-           
-            return db.Users.First();
+            
+            var cookie = System.Web.HttpContext.Current.Request.Cookies["GB"];
+            var user = db.Users.Where(e => e.COOKIE == cookie.Value).FirstOrDefault();
+            return user;
         }
 
         // GET: api/user/address
