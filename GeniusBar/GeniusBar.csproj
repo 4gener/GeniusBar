@@ -167,9 +167,33 @@
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UserAddressesController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\UserRepairOrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
+=======
+    <Compile Include="Controllers\UserRecycleOrdersController.cs" />
+    <Compile Include="Controllers\UserRepairOrdersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WebBannersController.cs" />
+    <Compile Include="Migrations\201807230834581_Initial.cs" />
+    <Compile Include="Migrations\201807230834581_Initial.Designer.cs">
+      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.cs" />
+    <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.Designer.cs">
+      <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807241110528_nullable_recycle_orders.cs" />
+    <Compile Include="Migrations\201807241110528_nullable_recycle_orders.Designer.cs">
+      <DependentUpon>201807241110528_nullable_recycle_orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807241122264_JsonIgnore.cs" />
+    <Compile Include="Migrations\201807241122264_JsonIgnore.Designer.cs">
+      <DependentUpon>201807241122264_JsonIgnore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+>>>>>>> ab7535c8cea5d46fedd4b687d6e8857fd2349a47
     <Compile Include="Models\RepairCategory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +232,23 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807230834581_Initial.resx">
+      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807240814178_nullable_Enginer_ID.resx">
+      <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241110528_nullable_recycle_orders.resx">
+      <DependentUpon>201807241110528_nullable_recycle_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241122264_JsonIgnore.resx">
+      <DependentUpon>201807241122264_JsonIgnore.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+>>>>>>> ab7535c8cea5d46fedd4b687d6e8857fd2349a47
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
