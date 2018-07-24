@@ -20,9 +20,10 @@ namespace GeniusBar.Controllers
         {
             // To be implemented 
             // throw new System.NotImplementedException();
-           
-            // Console.WriteLine(db.Users.First().ID);
-            return db.Users.First();
+            
+            var cookie = System.Web.HttpContext.Current.Request.Cookies["GB"];
+            var user = db.Users.Where(e => e.COOKIE == cookie.Value).FirstOrDefault();
+            return user;
         }
         
         public class OrderData
@@ -174,6 +175,7 @@ namespace GeniusBar.Controllers
                     };
 
                 db.RecycleOrder_RecycleEvaluatonChoice.Add(recycleOrderRecycleEvaluationChoice);
+                db.SaveChanges();
             }
            
             
