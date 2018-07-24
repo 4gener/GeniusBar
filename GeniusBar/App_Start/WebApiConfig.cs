@@ -19,6 +19,14 @@ namespace GeniusBar
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var jsonSerializerSettings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
+            jsonSerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
+            jsonSerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+
+
+
         }
+        
     }
 }

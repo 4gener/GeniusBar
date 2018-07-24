@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -55,6 +56,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.2.0\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
@@ -161,11 +165,17 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
+    <Compile Include="Controllers\UserAddressesController.cs" />
+    <Compile Include="Controllers\UserRepairOrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
     <Compile Include="Migrations\201807230834581_Initial.cs" />
     <Compile Include="Migrations\201807230834581_Initial.Designer.cs">
       <DependentUpon>201807230834581_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.cs" />
+    <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.Designer.cs">
+      <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
@@ -209,6 +219,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807230834581_Initial.resx">
       <DependentUpon>201807230834581_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807240814178_nullable_Enginer_ID.resx">
+      <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
