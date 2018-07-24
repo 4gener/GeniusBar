@@ -35,7 +35,7 @@ namespace GeniusBar.Controllers
                 Email = data.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(data.Password),
                 Role_ID = 1,
-                Cookie = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(data.Email, "MD5")
+                COOKIE = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(data.Email, "MD5")
                     .ToLower(),
             };
 
@@ -61,7 +61,7 @@ namespace GeniusBar.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage res = Request.CreateResponse(user);
-                var cookie = new CookieHeaderValue("GB", user.Cookie);
+                var cookie = new CookieHeaderValue("GB", user.COOKIE);
                 res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
@@ -90,7 +90,7 @@ namespace GeniusBar.Controllers
             if (BCrypt.Net.BCrypt.Verify(data.Password, user.Password))
             {
                 HttpResponseMessage res = Request.CreateResponse(user);
-                var cookie = new CookieHeaderValue("GB", user.Cookie);
+                var cookie = new CookieHeaderValue("GB", user.COOKIE);
                 res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
