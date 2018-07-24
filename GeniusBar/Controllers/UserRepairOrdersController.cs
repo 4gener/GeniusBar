@@ -20,9 +20,10 @@ namespace GeniusBar.Controllers
         {
             // To be implemented 
             // throw new System.NotImplementedException();
-           
-            // Console.WriteLine(db.Users.First().ID);
-            return db.Users.First();
+            
+            var cookie = System.Web.HttpContext.Current.Request.Cookies["GB"];
+            var user = db.Users.Where(e => e.COOKIE == cookie.Value).FirstOrDefault();
+            return user;
         }
         
         public class OrderData
@@ -165,17 +166,20 @@ namespace GeniusBar.Controllers
             Console.WriteLine(order.ID);
             
             foreach (var choice in repairOrder.Choices)
-            {
-                var repairOrderRepairChoice =
-                    new RepairOrder_RepairChoice
-                    {
-                        Rep_choice_ID = choice,
-                        Rep_order_ID = order.ID
-                    };
-
-                db.RepairOrder_RepairChoice.Add(repairOrderRepairChoice);
-            }
+                       {
+                           var repairOrderRepairChoice =
+                               new RepairOrder_RepairChoice
+                               {
+                                   Rep_choice_ID = choice,
+                                   Rep_order_ID = order.ID
+                               };
            
+                           db.RepairOrder_RepairChoice.Add(repairOrderRepairChoice);
+                           db.SaveChanges();
+                       }
+           
+                       
+                      
             
 
             return CreatedAtRoute("GetUserRepairOrder", new { id = order.ID }, order);
