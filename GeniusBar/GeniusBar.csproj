@@ -128,6 +128,14 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceer40EN.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlcecompact40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceca40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\README_ENU.txt" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\msvcr90.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceme40.dll" />
@@ -136,6 +144,7 @@
     <None Include="_bin_deployableAssemblies\amd64\sqlceca40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -149,7 +158,6 @@
     <Compile Include="Controllers\RecycleEvaluationChoicesController.cs" />
     <Compile Include="Controllers\RecycleOrdersController.cs" />
     <Compile Include="Controllers\RecycleOrder_RecycleEvaluatonChoiceController.cs" />
-    <Compile Include="Controllers\RecycleRepairController.cs" />
     <Compile Include="Controllers\RepairCategoriesController.cs" />
     <Compile Include="Controllers\RepairChoicesController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
@@ -201,7 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807230834581_Initial.resx">
