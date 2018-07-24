@@ -12,7 +12,7 @@ using GeniusBar.Models;
 
 namespace GeniusBar.Controllers
 {
-    public class UserRepairOrdersController : ApiController
+    public class UserRecycleOrdersController : ApiController
     {
         private GeniusBarContext db = new GeniusBarContext();
 
@@ -30,39 +30,39 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RecycleOrderState State;
             public string Loc_name;
             public string Loc_detail;
             public List<int> Choices;
             
         }
         
-        // GET: api/user/repair_orders
-        [Route("api/user/repair_orders")]
+        // GET: api/user/recycle_orders
+        [Route("api/user/recycle_orders")]
         [HttpGet]
-        [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult GetUserRepairOrders()
+        [ResponseType(typeof(RecycleOrder))]
+        public IHttpActionResult GetUserRecycleOrders()
         {
             User cookiedUser = getCooikedUser();
             
             Console.WriteLine(cookiedUser.ID);
 
-            return Ok(db.RepairOrders.Where(e => e.Customer_ID == cookiedUser.ID).ToList<RepairOrder>());
+            return Ok(db.RecycleOrders.Where(e => e.Customer_ID == cookiedUser.ID).ToList<RecycleOrder>());
         }
         
-        // GET: api/user/repair_order/5
-        [Route("api/user/repair_order/{id}", Name="GetUserRepairOrder")]
-        [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult GetUserRepairOrder(int id)
+        // GET: api/user/recycle_order/5
+        [Route("api/user/recycle_order/{id}", Name="GetUserRecycleOrder")]
+        [ResponseType(typeof(RecycleOrder))]
+        public IHttpActionResult GetUserRecycleOrder(int id)
         {
             User cookiedUser = getCooikedUser();
-            var repairOrder = db.RepairOrders.FirstOrDefault(u => (u.Customer_ID == cookiedUser.ID) && (u.ID == id));
-            if (repairOrder == null)
+            var recycleOrder = db.RecycleOrders.FirstOrDefault(u => (u.Customer_ID == cookiedUser.ID) && (u.ID == id));
+            if (recycleOrder == null)
             {
                 return NotFound();
             }
 
-            return Ok(repairOrder);
+            return Ok(recycleOrder);
         }
         
         
@@ -73,36 +73,36 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RecycleOrderState State;
             public string Loc_name;
             public string Loc_detail;
         }
 
         
-        // PUT: api/user/repair_order/{id}
-        [Route("api/user/repair_order/{id}")]
+        // PUT: api/user/recycle_order/{id}
+        [Route("api/user/recycle_order/{id}")]
         [HttpPut]
-        [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult PutUserRepairOrder(int id, OrderUpdateData repairOrder)
+        [ResponseType(typeof(RecycleOrder))]
+        public IHttpActionResult PutUserRecycleOrder(int id, OrderUpdateData recycleOrder)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var order = db.RepairOrders.Find(id);
+            var order = db.RecycleOrders.Find(id);
             
             if (order.Customer_ID != getCooikedUser().ID)
             {
                 return Unauthorized();
             }
 
-            order.Customer_note = repairOrder.Customer_note;
-            order.Staff_note = repairOrder.Staff_note;
-            order.Price = repairOrder.Price;
-            order.State = repairOrder.State;
-            order.Loc_detail = repairOrder.Loc_detail;
-            order.Loc_name = repairOrder.Loc_name;
+            order.Customer_note = recycleOrder.Customer_note;
+            order.Staff_note = recycleOrder.Staff_note;
+            order.Price = recycleOrder.Price;
+            order.State = recycleOrder.State;
+            order.Loc_detail = recycleOrder.Loc_detail;
+            order.Loc_name = recycleOrder.Loc_name;
             
             
 
@@ -114,7 +114,7 @@ namespace GeniusBar.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RepairOrderExists(id))
+                if (!RecycleOrderExists(id))
                 {
                     return NotFound();
                 }
@@ -126,11 +126,11 @@ namespace GeniusBar.Controllers
         }
         
         
-        // POST: api/user/repair_order/
-        [Route("api/user/repair_order/")]
+        // POST: api/user/recycle_order/
+        [Route("api/user/recycle_order/")]
         [HttpPost]
         [ResponseType(typeof(ServiceAddress))]
-        public IHttpActionResult PostUserAddress(OrderData repairOrder)
+        public IHttpActionResult PostUserAddress(OrderData recycleOrder)
         {
             if (!ModelState.IsValid)
             {
@@ -142,43 +142,43 @@ namespace GeniusBar.Controllers
                 return Unauthorized();
             }
             
-            RepairOrder order = new RepairOrder();
+            RecycleOrder order = new RecycleOrder();
             order.Create_time = System.DateTime.Now;
             order.Service_time = System.DateTime.Now;
-            order.Customer_note = repairOrder.Customer_note;
-            order.Staff_note = repairOrder.Staff_note;
-            order.Price = repairOrder.Price;
-            order.State = repairOrder.State;
-            order.Loc_name = repairOrder.Loc_name;
-            order.Loc_detail = repairOrder.Loc_detail;
+            order.Customer_note = recycleOrder.Customer_note;
+            order.Staff_note = recycleOrder.Staff_note;
+            order.Price = recycleOrder.Price;
+            order.State = recycleOrder.State;
+            order.Loc_name = recycleOrder.Loc_name;
+            order.Loc_detail = recycleOrder.Loc_detail;
             order.Customer_ID = getCooikedUser().ID;
             order.Engineer_ID = null;
             
             
             
 
-            var entry = db.RepairOrders.Add(order);
+            var entry = db.RecycleOrders.Add(order);
             db.SaveChanges();
 
             db.Entry(order).GetDatabaseValues();
             
             Console.WriteLine(order.ID);
             
-            foreach (var choice in repairOrder.Choices)
+            foreach (var choice in recycleOrder.Choices)
             {
-                var repairOrderRepairChoice =
-                    new RepairOrder_RepairChoice
+                var recycleOrderRecycleEvaluationChoice =
+                    new RecycleOrder_RecycleEvaluatonChoice
                     {
-                        Rep_choice_ID = choice,
-                        Rep_order_ID = order.ID
+                        Rec_eval_choice_ID = choice,
+                        Rec_order_ID = order.ID
                     };
 
-                db.RepairOrder_RepairChoice.Add(repairOrderRepairChoice);
+                db.RecycleOrder_RecycleEvaluatonChoice.Add(recycleOrderRecycleEvaluationChoice);
             }
            
             
 
-            return CreatedAtRoute("GetUserRepairOrder", new { id = order.ID }, order);
+            return CreatedAtRoute("GetUserRecycleOrder", new { id = order.ID }, order);
         }
 
         
@@ -191,9 +191,9 @@ namespace GeniusBar.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RepairOrderExists(int id)
+        private bool RecycleOrderExists(int id)
         {
-            return db.RepairOrders.Count(e => e.ID == id) > 0;
+            return db.RecycleOrders.Count(e => e.ID == id) > 0;
         }
 
 

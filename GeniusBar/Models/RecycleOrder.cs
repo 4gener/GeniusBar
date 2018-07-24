@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 
 namespace GeniusBar.Models
@@ -50,7 +51,7 @@ namespace GeniusBar.Models
         [Required]
         public int Customer_ID { get; set; }
 
-        public int Engineer_ID { get; set; }
+        public int? Engineer_ID { get; set; }
 
         [ForeignKey("Customer_ID ")]
         public User User { get; set; }
@@ -58,6 +59,7 @@ namespace GeniusBar.Models
         [ForeignKey("Engineer_ID ")]
         public User Users { get; set; }
 
+        [JsonIgnore]
         public ICollection<RecycleOrder_RecycleEvaluatonChoice> RecycleOrder_RecycleEvaluatonChoices { get; set; }
 
     }

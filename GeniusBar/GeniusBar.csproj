@@ -166,6 +166,7 @@
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UserAddressesController.cs" />
+    <Compile Include="Controllers\UserRecycleOrdersController.cs" />
     <Compile Include="Controllers\UserRepairOrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
@@ -176,6 +177,14 @@
     <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.cs" />
     <Compile Include="Migrations\201807240814178_nullable_Enginer_ID.Designer.cs">
       <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807241110528_nullable_recycle_orders.cs" />
+    <Compile Include="Migrations\201807241110528_nullable_recycle_orders.Designer.cs">
+      <DependentUpon>201807241110528_nullable_recycle_orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807241122264_JsonIgnore.cs" />
+    <Compile Include="Migrations\201807241122264_JsonIgnore.Designer.cs">
+      <DependentUpon>201807241122264_JsonIgnore.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
@@ -222,6 +231,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807240814178_nullable_Enginer_ID.resx">
       <DependentUpon>201807240814178_nullable_Enginer_ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241110528_nullable_recycle_orders.resx">
+      <DependentUpon>201807241110528_nullable_recycle_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807241122264_JsonIgnore.resx">
+      <DependentUpon>201807241122264_JsonIgnore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
