@@ -78,58 +78,33 @@ namespace GeniusBar.Controllers
             public string Loc_detail;
         }
 
-        // PUT: api/RepairOrders1/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutRepairOrder(int id, OrderUpdateData repairOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != repairOrder.ID)
-            {
-                return BadRequest();
-            }
-            
-            
-            
-
-            db.Entry(repairOrder).State = EntityState.Modified;
-
-
-        }
         
-        // POST: api/user/repair_order/{id}
+        // PUT: api/user/repair_order/{id}
         [Route("api/user/repair_order/{id}")]
         [HttpPut]
-        [ResponseType(typeof(RepairOrder)]
-        public IHttpActionResult PutUserAddress(OrderData repairOrder)
+        [ResponseType(typeof(RepairOrder))]
+        public IHttpActionResult PutUserRepairOrder(int id, OrderUpdateData repairOrder)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var order = db.RepairOrders.Find(id);
             
-            if (getCooikedUser() == null)
+            if (order.ID != getCooikedUser().ID)
             {
                 return Unauthorized();
             }
-            
-            RepairOrder order = new RepairOrder();
-            order.Create_time = System.DateTime.Now;
-            order.Service_time = System.DateTime.Now;
+
             order.Customer_note = repairOrder.Customer_note;
             order.Staff_note = repairOrder.Staff_note;
-            order.Price = repairOrder.Price;
-            order.State = repairOrder.State;
-            order.Loc_name = repairOrder.Loc_name;
+            order.Price = repairOrder.State;
             order.Loc_detail = repairOrder.Loc_detail;
-            order.Customer_ID = getCooikedUser().ID;
-            order.Engineer_ID = null;
+            order.Loc_name = repairOrder.Loc_name;
             
-            var entry = db.RepairOrders.Add(order);
-            db.SaveChanges();
+            
+
             db.Entry(order).State = EntityState.Modified;
 
             try
@@ -146,7 +121,9 @@ namespace GeniusBar.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);            
+
         }
+        
         
         // POST: api/user/repair_order/
         [Route("api/user/repair_order/")]
