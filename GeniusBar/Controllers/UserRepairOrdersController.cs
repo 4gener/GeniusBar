@@ -92,23 +92,14 @@ namespace GeniusBar.Controllers
 
             var order = db.RepairOrders.Find(id);
             
-<<<<<<< HEAD
             if (order.ID != getCooikedUser().ID)
-=======
-            if (order.Customer_ID != getCooikedUser().ID)
->>>>>>> ab7535c8cea5d46fedd4b687d6e8857fd2349a47
             {
                 return Unauthorized();
             }
 
             order.Customer_note = repairOrder.Customer_note;
             order.Staff_note = repairOrder.Staff_note;
-<<<<<<< HEAD
             order.Price = repairOrder.State;
-=======
-            order.Price = repairOrder.Price;
-            order.State = repairOrder.State;
->>>>>>> ab7535c8cea5d46fedd4b687d6e8857fd2349a47
             order.Loc_detail = repairOrder.Loc_detail;
             order.Loc_name = repairOrder.Loc_name;
             
