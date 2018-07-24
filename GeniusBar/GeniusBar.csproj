@@ -158,6 +158,7 @@
     <Compile Include="Controllers\RecycleEvaluationChoicesController.cs" />
     <Compile Include="Controllers\RecycleOrdersController.cs" />
     <Compile Include="Controllers\RecycleOrder_RecycleEvaluatonChoiceController.cs" />
+    <Compile Include="Controllers\RecycleRepairController.cs" />
     <Compile Include="Controllers\RepairCategoriesController.cs" />
     <Compile Include="Controllers\RepairChoicesController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
@@ -165,13 +166,10 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
+    <Compile Include="Controllers\UserAddressesController.cs" />
+    <Compile Include="Controllers\UserRepairOrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WebBannersController.cs" />
-    <Compile Include="Migrations\201807230834581_Initial.cs" />
-    <Compile Include="Migrations\201807230834581_Initial.Designer.cs">
-      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,11 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807230834581_Initial.resx">
-      <DependentUpon>201807230834581_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
