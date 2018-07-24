@@ -33,7 +33,8 @@ namespace GeniusBar.Models
         public virtual Role Role { get; set; }
         
         [JsonIgnore]
-        public string Cookie { get; set; }
+        [MaxLength(50)]
+        public string COOKIE { get; set; }
 
         [JsonIgnore]
         public ICollection<RecycleOrder> RecycleOrders { get; set; }
