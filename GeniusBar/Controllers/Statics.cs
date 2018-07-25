@@ -51,6 +51,40 @@ namespace GeniusBar.Controllers
                 .Join(db.Users, a=>a.ID, b=>b.ID, (a,b)=>new {a.ID, b.Name, a.count, a.tot_price});
             return Ok(re.ToList());
         }
+        
+        // GET: /api/data/recycle_engineer_amount/
+        [Route("api/data/recycle_engineer_amount/")]
+        [HttpGet]
+        public IHttpActionResult GetEngineerRecycleAmount()
+        {
+            var re = db.RecycleOrders
+                .GroupBy(e => new {e.Engineer_ID, e.Price})
+                .Select(g => new
+                {
+                    ID = g.Key.Engineer_ID,
+                    count = g.Count(),
+                    tot_price = g.Sum(e => e.Price)
+                })
+                .Join(db.Users, a=>a.ID, b=>b.ID, (a,b)=>new {a.ID, b.Name, a.count, a.tot_price});
+            return Ok(re.ToList());
+        }
+        
+        // GET: /api/data/repair_engineer_amount/
+        [Route("api/data/repair_engineer_amount/")]
+        [HttpGet]
+        public IHttpActionResult GetEngineerRepairAmount()
+        {
+            var re = db.RepairOrders
+                .GroupBy(e => new {e.Engineer_ID, e.Price})
+                .Select(g => new
+                {
+                    ID = g.Key.Engineer_ID,
+                    count = g.Count(),
+                    tot_price = g.Sum(e => e.Price)
+                })
+                .Join(db.Users, a=>a.ID, b=>b.ID, (a,b)=>new {a.ID, b.Name, a.count, a.tot_price});
+            return Ok(re.ToList());
+        }
 
     }
 }
