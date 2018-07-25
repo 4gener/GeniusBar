@@ -135,5 +135,40 @@ namespace GeniusBar.Controllers
             
             return Ok(re.ToList());
         }
+        
+        // GET: /api/data/hot_models/
+        [Route("api/data/hot_models/")]
+        [HttpGet]
+        public IHttpActionResult  GetHotModels()
+        {
+            var re = db.RepairOrder_RepairChoice
+                .GroupBy(n => new {n.Rep_order_ID})
+                .Select(x => new
+                {
+                    o_id = x.Key.Rep_order_ID, 
+                    c_id = x.Max(t => t.Rep_choice_ID)
+                    
+                })
+                .Join(db.RepairChoices, 
+                    a => a.c_id, 
+                    b => b.ID,
+                    (a, b) => new
+                    {
+                        a.o_id, b.Model_ID
+                        
+                    })
+                .GroupBy(e => e.Model_ID)
+                .Select(e => new
+                {
+                    Model = e.Key,
+                    count = e.Count()
+                });
+                
+  
+            
+            return Ok(re.ToList());
+        }
+
+        
     }
 }
