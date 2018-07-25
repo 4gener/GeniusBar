@@ -164,6 +164,7 @@ namespace GeniusBar.Controllers
             });
             var cookie = new CookieHeaderValue("GB", "");
             cookie.Expires = DateTime.Now.AddDays(-1);
+            cookie.Path = "/";
             res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
             return res;
         }
