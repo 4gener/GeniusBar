@@ -27,10 +27,17 @@ namespace GeniusBar.Controllers
         }
 
         // GET: api/Users
-        [Route("api/Users/{role_id}")]
+        [Route("api/Users/route")]
         public IQueryable<User> GetUsers(int role_id)
         {
             return db.Users.Where(e=>e.Role_ID==role_id);
+        }
+        
+        // GET: api/Users
+        [Route("api/Users")]
+        public IQueryable<User> GetUsers()
+        {
+            return db.Users;
         }
 
         // GET: api/Users/5
