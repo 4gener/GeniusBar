@@ -10,9 +10,12 @@ namespace GeniusBar.Models
 {
     public enum RepairOrderState
     {
-        REPAIRING,
+        CANCELLED,
+        ORDERED,
+        PAID,
+        ASSIGNED,
         REPAIRED,
-        DELIVERING
+        DONE
     }
 
     public class RepairOrder
@@ -36,7 +39,7 @@ namespace GeniusBar.Models
         public decimal Price { get; set; }
 
         [Required]
-        public byte State { get; set; }
+        public RepairOrderState State { get; set; }
 
         [Required]
         [MaxLength(200)]

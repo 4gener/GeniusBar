@@ -167,6 +167,7 @@
     <Compile Include="Controllers\CouponsController.cs" />
     <Compile Include="Controllers\LaptopBrandsController.cs" />
     <Compile Include="Controllers\LaptopModelsController.cs" />
+    <Compile Include="Controllers\OrderStateController.cs" />
     <Compile Include="Controllers\RecycleEvaluationCategoriesController.cs" />
     <Compile Include="Controllers\RecycleEvaluationChoicesController.cs" />
     <Compile Include="Controllers\RecycleOrdersController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Controllers\Statics.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UserAddressesController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\UserRecycleOrdersController.cs" />
     <Compile Include="Controllers\UserRepairOrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
