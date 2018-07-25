@@ -109,6 +109,25 @@ namespace GeniusBar.Controllers
             return Ok(re.ToList());
         }
         
-
+        // GET: /api/data/recycle_daily_amount/
+        [Route("api/data/recycle_daily_amount/")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRecycleDailyAmount()
+        {
+            var datas = await db.RecycleOrders.ToListAsync();
+            var re = datas
+                .Select(n => new
+                {
+                    o_ID = n.ID,
+                    Date = n.Create_time.ToString("yyyy-MM-dd")
+                })
+                .GroupBy(n => new {n.Date})
+                .Select(n => new
+                {
+                    Date = n.Key.Date, count = n.Count()
+                });
+            
+            return Ok(re.ToList());
+        }
     }
 }
