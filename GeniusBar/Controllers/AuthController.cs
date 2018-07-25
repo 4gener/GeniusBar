@@ -69,6 +69,57 @@ namespace GeniusBar.Controllers
                 });
             }
         }
+        
+        // POST: api/engineer_egister
+        [HttpPost]
+        [Route("api/engineer_register")]
+        public HttpResponseMessage EngineerRegister(RegisterData data)
+        {
+            User user = new User()
+            {
+                Name = data.Name,
+                Email = data.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(data.Password),
+                Role_ID = 2,
+                COOKIE = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(data.Email, "MD5")
+                    .ToLower(),
+            };
+
+            if(db.Users.Count(e => e.Name == data.Name) > 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
+                {
+                    message = "换一个名字哦"
+                });
+            }
+
+            if (db.Users.Count(e => e.Email == data.Email) > 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
+                {
+                    message = "已经注册过啦"
+                });
+            }
+
+            try
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+
+                HttpResponseMessage res = Request.CreateResponse(user);
+                var cookie = new CookieHeaderValue("GB", user.COOKIE);
+                res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+                return res;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new
+                {
+                    message = "出错啦"
+                });
+            }
+        }
 
         public class LoginData
         {
