@@ -150,23 +150,29 @@ namespace GeniusBar.Controllers
                 .GroupBy(n => new {n.Rep_order_ID})
                 .Select(x => new
                 {
-                    o_id = x.Key.Rep_order_ID, 
+                    o_id = x.Key.Rep_order_ID,
                     c_id = x.Max(t => t.Rep_choice_ID)
-                    
+
                 })
-                .Join(db.RepairChoices, 
-                    a => a.c_id, 
+                .Join(db.RepairChoices,
+                    a => a.c_id,
                     b => b.ID,
                     (a, b) => new
                     {
-                        a.o_id, b.Model_ID
-                        
+                        a.o_id,
+                        b.Model_ID
+
                     })
                 .GroupBy(e => e.Model_ID)
                 .Select(e => new
                 {
-                    Model = e.Key,
+                    ModelID = e.Key,
                     count = e.Count()
+                }).Join(db.LaptopModels, a => a.ModelID, b => b.ID, (a, b) => new
+                {
+                    a.ModelID,
+                    b.Name,
+                    a.count,
                 });
                 
   
