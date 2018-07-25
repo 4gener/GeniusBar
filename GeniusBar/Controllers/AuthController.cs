@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
 using GeniusBar.Models;
 
@@ -34,7 +36,7 @@ namespace GeniusBar.Controllers
                     .ToLower(),
             };
 
-            if(db.Users.Count(e => e.Name == data.Name) > 0)
+            if (db.Users.Count(e => e.Name == data.Name) > 0)
             {
                 return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
                 {
@@ -70,7 +72,7 @@ namespace GeniusBar.Controllers
                 });
             }
         }
-        
+
         // POST: api/engineer_egister
         [HttpPost]
         [Route("api/engineer_register")]
@@ -86,7 +88,7 @@ namespace GeniusBar.Controllers
                     .ToLower(),
             };
 
-            if(db.Users.Count(e => e.Name == data.Name) > 0)
+            if (db.Users.Count(e => e.Name == data.Name) > 0)
             {
                 return Request.CreateResponse(HttpStatusCode.PreconditionFailed, new
                 {
@@ -150,6 +152,20 @@ namespace GeniusBar.Controllers
                     message = "密码错误"
                 });
             }
+        }
+
+        [HttpGet]
+        [Route("api/logout")]
+        public HttpResponseMessage LogOut()
+        {
+            HttpResponseMessage res = Request.CreateResponse(new
+            {
+                message = "登出成功"
+            });
+            var cookie = new CookieHeaderValue("GB", "");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+            return res;
         }
     }
 }
