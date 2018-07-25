@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace GeniusBar
 {
@@ -23,8 +24,8 @@ namespace GeniusBar
             var jsonSerializerSettings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
             jsonSerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
             jsonSerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-
-
+            
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
         }
         
