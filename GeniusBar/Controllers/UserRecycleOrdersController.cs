@@ -183,6 +183,60 @@ namespace GeniusBar.Controllers
             return CreatedAtRoute("GetUserRecycleOrder", new { id = order.ID }, order);
         }
 
+
+        // GET: api/user/recycle_choice
+        [Route("api/user/recycle_choice/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetUserRecycleChoice(int id)
+        {
+            var re = db.RecycleOrder_RecycleEvaluatonChoice.Where(e => e.Rec_order_ID == id).Include("RecycleEvaluationChoice");
+            return Ok(re.ToList());
+        }
+
+        public class StateUpdate
+        {
+            public RecycleOrderState State;
+        }
+        
+        // PUT: api/user/repair_status_update
+        [Route("api/user/recycle_status_update/{id}")]
+        [HttpPut]
+        public IHttpActionResult RecycleStatusUpdate(int id, StateUpdate s)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var order = db.RecycleOrders.Find(id);
+            
+            if (order.Customer_ID != getCooikedUser().ID)
+            {
+                return Unauthorized();
+            }
+
+            order.State = s.State;
+            
+
+            db.Entry(order).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecycleOrderExists(id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+
+            return StatusCode(HttpStatusCode.OK);            
+
+        }
+
         
         protected override void Dispose(bool disposing)
         {
