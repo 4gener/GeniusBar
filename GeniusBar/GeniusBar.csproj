@@ -177,6 +177,7 @@
     <Compile Include="Controllers\RepairOrder_RepairChoiceController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
+    <Compile Include="Controllers\Statics.cs" />
     <Compile Include="Controllers\ServiceAddressesController.cs" />
     <Compile Include="Controllers\UserAddressesController.cs" />
     <Compile Include="Controllers\UserRecycleOrdersController.cs" />
