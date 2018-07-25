@@ -11,6 +11,8 @@ namespace GeniusBar
         public static void Register(HttpConfiguration config)
         {
             // Web API 配置和服务
+            
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API 路由
             config.MapHttpAttributeRoutes();
@@ -24,8 +26,6 @@ namespace GeniusBar
             var jsonSerializerSettings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
             jsonSerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
             jsonSerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-            
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
         }
         
