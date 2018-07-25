@@ -11,10 +11,12 @@ namespace GeniusBar.Models
 {
     public enum RecycleOrderState
     {
-        UNPAID,
+        CANCELLED,
+        ORDERED,
+        ASSIGNED,
+        FETEHED,
         PAID,
-        COMPLETED,
-        DELIVERING
+        DONE
     }
 
     public class RecycleOrder

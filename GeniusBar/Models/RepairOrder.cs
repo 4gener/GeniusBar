@@ -10,9 +10,12 @@ namespace GeniusBar.Models
 {
     public enum RepairOrderState
     {
-        REPAIRING,
+        CANCELLED,
+        ORDERED,
+        PAID,
+        ASSIGNED,
         REPAIRED,
-        DELIVERING
+        DONE
     }
 
     public class RepairOrder

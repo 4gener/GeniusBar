@@ -185,7 +185,6 @@ namespace GeniusBar.Controllers
             return CreatedAtRoute("GetUserRepairOrder", new { id = order.ID }, order);
         }
 
-
         // GET: api/user/repair_choice
         [Route("api/user/repair_choice/{id}")]
         [HttpGet]
@@ -235,7 +234,7 @@ namespace GeniusBar.Controllers
             }
             return StatusCode(HttpStatusCode.OK);
         }
-        
+       
         
         protected override void Dispose(bool disposing)
         {
