@@ -66,7 +66,7 @@ namespace GeniusBar.Controllers
             {
                 return Unauthorized();
             }
-            if (info.password) {
+            if (info.password != "") {
                 if(BCrypt.Net.BCrypt.Verify(info.oldpassword, user.Password))
                 {
                     return Unauthorized();
@@ -74,8 +74,8 @@ namespace GeniusBar.Controllers
                 user.Password = BCrypt.Net.BCrypt.HashPassword(info.password);
             }
             
-            if (info.email) user.Email = info.email;
-            if (info.username) user.Name = info.username;
+            if (info.email != "") user.Email = info.email;
+            if (info.username != "") user.Name = info.username;
             
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
