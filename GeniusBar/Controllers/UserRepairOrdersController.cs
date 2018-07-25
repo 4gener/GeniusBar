@@ -31,7 +31,7 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RepairOrderState State;
             public string Loc_name;
             public string Loc_detail;
             public List<int> Choices;
@@ -74,7 +74,7 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RepairOrderState State;
             public string Loc_name;
             public string Loc_detail;
         }
@@ -197,7 +197,7 @@ namespace GeniusBar.Controllers
         
         public class StateUpdate
         {
-            public byte State;
+            public RepairOrderState State;
         }
         
         // PUT: api/user/repair_status_update

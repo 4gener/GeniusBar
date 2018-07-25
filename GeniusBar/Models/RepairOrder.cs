@@ -36,7 +36,7 @@ namespace GeniusBar.Models
         public decimal Price { get; set; }
 
         [Required]
-        public byte State { get; set; }
+        public RepairOrderState State { get; set; }
 
         [Required]
         [MaxLength(200)]
