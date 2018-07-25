@@ -34,6 +34,21 @@ namespace GeniusBar.Controllers
 
             return Ok(laptopModel);
         }
+        
+        
+        // GET: api/LaptopModels/{id}
+        [Route("api/LaptopModels/route")]
+        [ResponseType(typeof(LaptopModel))]
+        public IHttpActionResult GetLaptopModelBrandID(int brandID)
+        {
+            var laptopModel = db.LaptopModels.Where(e=>e.Brand_ID == brandID);
+            if (laptopModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(laptopModel.ToList());
+        }
 
         // PUT: api/LaptopModels/5
         [ResponseType(typeof(void))]
