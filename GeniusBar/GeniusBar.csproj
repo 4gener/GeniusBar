@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\AuthorizationsController.cs" />
     <Compile Include="Controllers\CouponsController.cs" />
+    <Compile Include="Controllers\DispatchTakeController.cs" />
     <Compile Include="Controllers\LaptopBrandsController.cs" />
     <Compile Include="Controllers\LaptopModelsController.cs" />
     <Compile Include="Controllers\OrderStateController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Controllers\RepairChoicesController.cs" />
     <Compile Include="Controllers\RepairOrdersController.cs" />
     <Compile Include="Controllers\RepairOrder_RepairChoiceController.cs" />
+    <Compile Include="Controllers\RepairRecycle.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Role_AuthorizationController.cs" />
     <Compile Include="Controllers\Statics.cs" />
