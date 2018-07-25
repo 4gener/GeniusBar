@@ -16,6 +16,16 @@ namespace GeniusBar.Controllers
     {
         private GeniusBarContext db = new GeniusBarContext();
 
+        private User getCooikedUser()
+        {
+            // To be implemented 
+            // throw new System.NotImplementedException();
+
+            var cookie = System.Web.HttpContext.Current.Request.Cookies["GB"];
+            var user = db.Users.Where(e => e.COOKIE == cookie.Value).FirstOrDefault();
+            return user;
+        }
+
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
@@ -23,14 +33,12 @@ namespace GeniusBar.Controllers
         }
 
         // GET: api/Users/5
+        [Route("api/User")]
+        [HttpGet]
         [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
+        public IHttpActionResult GetUser()
         {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+            User user = getCooikedUser();
 
             return Ok(user);
         }
@@ -82,7 +90,7 @@ namespace GeniusBar.Controllers
             db.Users.Add(user);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.ID }, user);
+            return CreatedAtRoute("DefaultApi", new {id = user.ID}, user);
         }
 
         // DELETE: api/Users/5
@@ -107,6 +115,7 @@ namespace GeniusBar.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
