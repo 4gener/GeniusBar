@@ -31,7 +31,7 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RepairOrderState State;
             public string Loc_name;
             public string Loc_detail;
             public List<int> Choices;
@@ -74,7 +74,7 @@ namespace GeniusBar.Controllers
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
-            public byte State;
+            public RepairOrderState State;
             public string Loc_name;
             public string Loc_detail;
         }
@@ -185,57 +185,6 @@ namespace GeniusBar.Controllers
             return CreatedAtRoute("GetUserRepairOrder", new { id = order.ID }, order);
         }
 
-
-        // GET: api/user/repair_choice
-        [Route("api/user/repair_choice/{id}")]
-        [HttpGet]
-        public IHttpActionResult GetUserRepairChoice(int id)
-        {
-            var re = db.RepairOrder_RepairChoice.Where(e => e.Rep_order_ID == id).Include("RepairChoice");
-            return Ok(re.ToList());
-        }
-        
-        public class StateUpdate
-        {
-            public byte State;
-        }
-        
-        // PUT: api/user/repair_status_update
-        [Route("api/user/repair_status_update/{id}")]
-        [HttpPut]
-        public IHttpActionResult RepairStatusUpdate(int id, StateUpdate s)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var order = db.RepairOrders.Find(id);
-            
-            if (order.Customer_ID != getCooikedUser().ID)
-            {
-                return Unauthorized();
-            }
-
-            order.State = s.State;
-
-            db.Entry(order).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RepairOrderExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
-            return StatusCode(HttpStatusCode.OK);
-        }
-        
         
         protected override void Dispose(bool disposing)
         {
