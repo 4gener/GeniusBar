@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201807241623078_Initial.Designer.cs">
       <DependentUpon>201807241623078_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807250733425_change_order_status.cs" />
+    <Compile Include="Migrations\201807250733425_change_order_status.Designer.cs">
+      <DependentUpon>201807250733425_change_order_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepairCategory.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,6 +236,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807241623078_Initial.resx">
       <DependentUpon>201807241623078_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807250733425_change_order_status.resx">
+      <DependentUpon>201807250733425_change_order_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
