@@ -11,8 +11,6 @@ namespace GeniusBar
         public static void Register(HttpConfiguration config)
         {
             // Web API 配置和服务
-            
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API 路由
             config.MapHttpAttributeRoutes();
