@@ -94,6 +94,8 @@ namespace GeniusBar.Controllers
         public async Task<IHttpActionResult> GetRepairDailyAmount()
         {
             var datas = await db.RepairOrders.ToListAsync();
+            var startDate = System.DateTime.Now.AddDays(-7);
+        
             var re = datas
                 .Select(n => new
                 {
@@ -101,6 +103,7 @@ namespace GeniusBar.Controllers
                     Date = n.Create_time.ToString("yyyy-MM-dd"),
                     o_Price = n.Price
                 })
+                .Where(n=> (n.Date.AsDateTime() >= startDate))
                 .GroupBy(n => new {n.Date})
                 .Select(n => new
                 {
@@ -118,6 +121,7 @@ namespace GeniusBar.Controllers
         public async Task<IHttpActionResult> GetRecycleDailyAmount()
         {
             var datas = await db.RecycleOrders.ToListAsync();
+            var startDate = System.DateTime.Now.AddDays(-7);
             var re = datas
                 .Select(n => new
                 {
@@ -125,6 +129,7 @@ namespace GeniusBar.Controllers
                     Date = n.Create_time.ToString("yyyy-MM-dd"),
                     o_Price = n.Price
                 })
+                .Where(n=> (n.Date.AsDateTime() >= startDate))
                 .GroupBy(n => new {n.Date})
                 .Select(n => new
                 {
