@@ -66,7 +66,7 @@ namespace GeniusBar.Controllers
             {
                 return Unauthorized();
             }
-            if(BCrypt.Net.BCrypt.Verify(info.password,user.Password))
+            if(BCrypt.Net.BCrypt.Verify(info.oldpassword,user.Password))
             {
                 return Unauthorized();
             }
