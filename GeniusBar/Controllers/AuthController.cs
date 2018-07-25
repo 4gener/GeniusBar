@@ -57,6 +57,7 @@ namespace GeniusBar.Controllers
 
                 HttpResponseMessage res = Request.CreateResponse(user);
                 var cookie = new CookieHeaderValue("GB", user.COOKIE);
+                cookie.Path = "/";
                 res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
@@ -138,6 +139,7 @@ namespace GeniusBar.Controllers
             {
                 HttpResponseMessage res = Request.CreateResponse(user);
                 var cookie = new CookieHeaderValue("GB", user.COOKIE);
+                cookie.Path = "/";
                 res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
