@@ -152,7 +152,6 @@ namespace GeniusBar.Controllers
                 {
                     o_id = x.Key.Rep_order_ID,
                     c_id = x.Max(t => t.Rep_choice_ID)
-
                 })
                 .Join(db.RepairChoices,
                     a => a.c_id,
@@ -161,7 +160,6 @@ namespace GeniusBar.Controllers
                     {
                         a.o_id,
                         b.Model_ID
-
                     })
                 .GroupBy(e => e.Model_ID)
                 .Select(e => new
@@ -173,7 +171,14 @@ namespace GeniusBar.Controllers
                     a.ModelID,
                     b.Name,
                     a.count,
-                });
+                    b.Brand_ID
+                }).Join(db.LaptopBrands, a => a.Brand_ID, b => b.ID, (a, b) => new
+                {
+                    a.ModelID,
+                    Model = a.Name,
+                    Brand = b.Name,
+                    a.count
+                }).OrderBy(e => e.count);
                 
   
             
