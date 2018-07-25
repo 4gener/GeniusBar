@@ -98,12 +98,15 @@ namespace GeniusBar.Controllers
                 .Select(n => new
                 {
                     o_ID = n.ID,
-                    Date = n.Create_time.ToString("yyyy-MM-dd")
+                    Date = n.Create_time.ToString("yyyy-MM-dd"),
+                    o_Price = n.Price
                 })
                 .GroupBy(n => new {n.Date})
                 .Select(n => new
                 {
-                    Date = n.Key.Date, count = n.Count()
+                    Date = n.Key.Date, 
+                    count = n.Count(),
+                    tot_sales = n.Sum(e=>e.o_Price)
                 });
             
             return Ok(re.ToList());
@@ -119,12 +122,15 @@ namespace GeniusBar.Controllers
                 .Select(n => new
                 {
                     o_ID = n.ID,
-                    Date = n.Create_time.ToString("yyyy-MM-dd")
+                    Date = n.Create_time.ToString("yyyy-MM-dd"),
+                    o_Price = n.Price
                 })
                 .GroupBy(n => new {n.Date})
                 .Select(n => new
                 {
-                    Date = n.Key.Date, count = n.Count()
+                    Date = n.Key.Date, 
+                    count = n.Count(),
+                    tot_sales = n.Sum(e=>e.o_Price)
                 });
             
             return Ok(re.ToList());
