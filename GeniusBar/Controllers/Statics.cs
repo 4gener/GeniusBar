@@ -7,8 +7,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.WebPages;
 using GeniusBar.Models;
 
 namespace GeniusBar.Controllers
@@ -85,6 +87,28 @@ namespace GeniusBar.Controllers
                 .Join(db.Users, a=>a.ID, b=>b.ID, (a,b)=>new {a.ID, b.Name, a.count, a.tot_price});
             return Ok(re.ToList());
         }
+        
+        // GET: /api/data/repair_daily_amount/
+        [Route("api/data/repair_daily_amount/")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRepairDailyAmount()
+        {
+            var datas = await db.RepairOrders.ToListAsync();
+            var re = datas
+                .Select(n => new
+                {
+                    o_ID = n.ID,
+                    Date = n.Create_time.ToString("yyyy-MM-dd")
+                })
+                .GroupBy(n => new {n.Date})
+                .Select(n => new
+                {
+                    Date = n.Key.Date, count = n.Count()
+                });
+            
+            return Ok(re.ToList());
+        }
+        
 
     }
 }
