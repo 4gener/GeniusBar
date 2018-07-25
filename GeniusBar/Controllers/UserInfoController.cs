@@ -66,13 +66,17 @@ namespace GeniusBar.Controllers
             {
                 return Unauthorized();
             }
-            if(BCrypt.Net.BCrypt.Verify(info.oldpassword,user.Password))
-            {
-                return Unauthorized();
+            if (info.password) {
+                if(BCrypt.Net.BCrypt.Verify(info.oldpassword, user.Password))
+                {
+                    return Unauthorized();
+                }
+                user.Password = BCrypt.Net.BCrypt.HashPassword(info.password);
             }
-            user.Email = info.email;
-            user.Password = BCrypt.Net.BCrypt.HashPassword(info.password);
-            user.Name = info.username;
+            
+            if (info.email) user.Email = info.email;
+            if (info.username) user.Name = info.username;
+            
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             return Ok(user);
