@@ -94,8 +94,8 @@ namespace GeniusBar.Controllers
             }
 
             var order = db.RepairOrders.Find(id);
-            
-            if (order.Customer_ID != getCooikedUser().ID)
+            var cookieUser = getCooikedUser();
+            if (order.Customer_ID != cookieUser.ID || cookieUser.Role_ID !=3)
             {
                 return Unauthorized();
             }
@@ -146,8 +146,9 @@ namespace GeniusBar.Controllers
             }
 
             var order = db.RepairOrders.Find(id);
-            
-            if (order.Customer_ID != getCooikedUser().ID)
+            var cookieUser = getCooikedUser();
+
+            if (order.Customer_ID != getCooikedUser().ID || cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }
@@ -261,8 +262,9 @@ namespace GeniusBar.Controllers
             }
 
             var order = db.RepairOrders.Find(id);
-            
-            if (order.Customer_ID != getCooikedUser().ID)
+            var cookieUser = getCooikedUser();
+
+            if (order.Customer_ID != getCooikedUser().ID || cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }
