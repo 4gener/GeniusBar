@@ -138,7 +138,7 @@ namespace GeniusBar.Controllers
         [Route("api/user/repair_order_service_time/{id}")]
         [HttpPut]
         [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult PutRepairOrderTIme(int id, timeData recycleOrder)
+        public IHttpActionResult PutRecycleOrderTIme(int id, timeData recycleOrder)
         {
             if (!ModelState.IsValid)
             {
@@ -148,7 +148,7 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != getCooikedUser().ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }
@@ -264,7 +264,7 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != getCooikedUser().ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }

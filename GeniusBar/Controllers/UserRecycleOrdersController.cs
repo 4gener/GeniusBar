@@ -97,7 +97,7 @@ namespace GeniusBar.Controllers
             var order = db.RecycleOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != getCooikedUser().ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }
@@ -141,10 +141,8 @@ namespace GeniusBar.Controllers
 
             var order = db.RecycleOrders.Find(id);
             var cookieUser = getCooikedUser();
-            
-            
 
-            if (order.Customer_ID != getCooikedUser().ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
             {
                 return Unauthorized();
             }
@@ -236,49 +234,7 @@ namespace GeniusBar.Controllers
         }
         
         
-        // PUT: api/user/repair_order_service_time/{id}
-        [Route("api/user/recycle_order_service_time/{id}")]
-        [HttpPut]
-        [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult PutRecycleOrderTIme(int id, timeData recycleOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var order = db.RecycleOrders.Find(id);
-            var cookieUser = getCooikedUser();
-
-            if (order.Customer_ID != getCooikedUser().ID && cookieUser.Role_ID != 3)
-            {
-                return Unauthorized();
-            }
-
-
-            order.Service_time = recycleOrder.Service_time;
-
-            
-            
-
-            db.Entry(order).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RecycleOrderExists(id))
-                {
-                    return NotFound();
-                }
-                throw;
-            }
-
-            return Ok(order);            
-
-        }
+        
 
         
         protected override void Dispose(bool disposing)
