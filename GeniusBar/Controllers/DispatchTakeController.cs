@@ -79,7 +79,7 @@ namespace GeniusBar.Controllers
         [Route("api/engineer/undispatchedRepair")]
         public IHttpActionResult GetUnassignedRepairOrder()
         {
-            var orders = db.RepairOrders.Where(s => s.State == RepairOrderState.PAID).ToList<RepairOrder>();
+            var orders = db.RepairOrders.Where(s => s.State > RepairOrderState.PAID).ToList<RepairOrder>();
             return Ok(orders);
         }
 
@@ -132,7 +132,7 @@ namespace GeniusBar.Controllers
 
             var order = db.RepairOrders.Find(id);
 
-            if (order ==null || order.State!=RepairOrderState.PAID)
+            if (order ==null || order.State > RepairOrderState.PAID)
             {
                 return NotFound();
             }
