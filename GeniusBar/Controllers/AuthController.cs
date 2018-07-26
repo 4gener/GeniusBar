@@ -20,6 +20,18 @@ namespace GeniusBar.Controllers
             public string Email;
             public string Password;
         }
+        
+        private User getCooikedUser()
+        {
+            // To be implemented 
+            // throw new System.NotImplementedException();
+            
+            var cookie = System.Web.HttpContext.Current.Request.Cookies["GB"];
+            if (cookie == null) return null;
+            var user = db.Users.Where(e => e.COOKIE == cookie.Value).FirstOrDefault();
+            return user;
+        }
+        
 
         // POST: api/Register
         [HttpPost]
@@ -135,6 +147,15 @@ namespace GeniusBar.Controllers
         [Route("api/login")]
         public HttpResponseMessage Register(LoginData data)
         {
+            var cookiedUser = getCooikedUser();
+            if (cookiedUser != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new
+                {
+                    message = "请先退出再登录"
+                });
+            }
+            
             User user = db.Users.First(u => u.Email == data.Email);
 
             if (BCrypt.Net.BCrypt.Verify(data.Password, user.Password))
