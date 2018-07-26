@@ -29,6 +29,7 @@ namespace GeniusBar.Controllers
         public class OrderData
         {
             public string Customer_note;
+            public DateTime Service_time;
             public string Staff_note;
             public decimal Price;
             public RecycleOrderState State;
@@ -66,8 +67,9 @@ namespace GeniusBar.Controllers
             return Ok(recycleOrder);
         }
 
-        public class OrderUpdateData 
+        public class OrderUpdateData
         {
+            public DateTime Service_time;
             public string Customer_note;
             public string Staff_note;
             public decimal Price;
@@ -144,6 +146,7 @@ namespace GeniusBar.Controllers
             }
 
             order.Customer_note = recycleOrder.Customer_note;
+            order.Service_time = recycleOrder.Service_time;
             order.Staff_note = recycleOrder.Staff_note;
             order.Price = recycleOrder.Price;
             order.State = recycleOrder.State;
@@ -190,7 +193,7 @@ namespace GeniusBar.Controllers
             
             RecycleOrder order = new RecycleOrder();
             order.Create_time = System.DateTime.Now;
-            order.Service_time = System.DateTime.Now;
+            order.Service_time = recycleOrder.Service_time;
             order.Customer_note = recycleOrder.Customer_note;
             order.Staff_note = recycleOrder.Staff_note;
             order.Price = recycleOrder.Price;

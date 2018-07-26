@@ -29,6 +29,7 @@ namespace GeniusBar.Controllers
         public class OrderData
         {
             public string Customer_note;
+            public DateTime Service_time;
             public string Staff_note;
             public decimal Price;
             public RepairOrderState State;
@@ -72,6 +73,7 @@ namespace GeniusBar.Controllers
         public class OrderUpdateData 
         {
             public string Customer_note;
+            public DateTime Service_time;
             public string Staff_note;
             public decimal Price;
             public RepairOrderState State;
@@ -99,6 +101,7 @@ namespace GeniusBar.Controllers
             }
 
             order.Customer_note = repairOrder.Customer_note;
+            order.Service_time = repairOrder.Service_time;
             order.Staff_note = repairOrder.Staff_note;
             order.Price = repairOrder.Price;
             order.State = repairOrder.State;
@@ -193,7 +196,7 @@ namespace GeniusBar.Controllers
             
             RepairOrder order = new RepairOrder();
             order.Create_time = System.DateTime.Now;
-            order.Service_time = System.DateTime.Now;
+            order.Service_time = repairOrder.Service_time;
             order.Customer_note = repairOrder.Customer_note;
             order.Staff_note = repairOrder.Staff_note;
             order.Price = repairOrder.Price;
