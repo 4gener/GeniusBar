@@ -76,6 +76,54 @@ namespace GeniusBar.Controllers
             public string Loc_detail;
         }
 
+        public class timeData
+        {
+            public DateTime Service_time;
+        }
+        
+        // PUT: api/user/recycle_order/{id}
+        [Route("api/user/recycle_order_service_time/{id}")]
+        [HttpPut]
+        [ResponseType(typeof(RecycleOrder))]
+        public IHttpActionResult PutRecycleOrderTIme(int id, timeData recycleOrder)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var order = db.RecycleOrders.Find(id);
+            
+            if (order.Customer_ID != getCooikedUser().ID)
+            {
+                return Unauthorized();
+            }
+
+
+            order.Service_time = recycleOrder.Service_time;
+
+            
+            
+
+            db.Entry(order).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecycleOrderExists(id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+
+            return Ok(order);            
+
+        }
+
         
         // PUT: api/user/recycle_order/{id}
         [Route("api/user/recycle_order/{id}")]
@@ -179,6 +227,9 @@ namespace GeniusBar.Controllers
 
             return CreatedAtRoute("GetUserRecycleOrder", new { id = order.ID }, order);
         }
+        
+        
+        
 
         
         protected override void Dispose(bool disposing)

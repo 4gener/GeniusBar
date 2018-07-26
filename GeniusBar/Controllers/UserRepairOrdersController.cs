@@ -126,6 +126,54 @@ namespace GeniusBar.Controllers
 
         }
         
+        public class timeData
+        {
+            public DateTime Service_time;
+        }
+        
+        // PUT: api/user/repair_order_service_time/{id}
+        [Route("api/user/repair_order_service_time/{id}")]
+        [HttpPut]
+        [ResponseType(typeof(RepairOrder))]
+        public IHttpActionResult PutRecycleOrderTIme(int id, timeData recycleOrder)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var order = db.RepairOrders.Find(id);
+            
+            if (order.Customer_ID != getCooikedUser().ID)
+            {
+                return Unauthorized();
+            }
+
+
+            order.Service_time = recycleOrder.Service_time;
+
+            
+            
+
+            db.Entry(order).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RepairOrderExists(id))
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+
+            return Ok(order);            
+
+        }
+        
         
         // POST: api/user/repair_order/
         [Route("api/user/repair_order/")]
