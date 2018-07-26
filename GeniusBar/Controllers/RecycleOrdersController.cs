@@ -21,6 +21,14 @@ namespace GeniusBar.Controllers
         {
             return db.RecycleOrders;
         }
+        
+        // GET: api/RecycleOrders/route
+        [Route("api/RecycleOrders/range")]
+        public IQueryable<RecycleOrder> GetRecycleOrders(int startState, int endState)
+        {
+            
+            return db.RecycleOrders.Where(e=>((startState <= (int)e.State ) && ((int)e.State < endState)));
+        }
 
         // GET: api/RecycleOrders/5
         [ResponseType(typeof(RecycleOrder))]

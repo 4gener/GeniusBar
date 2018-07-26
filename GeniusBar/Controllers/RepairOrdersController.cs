@@ -34,6 +34,14 @@ namespace GeniusBar.Controllers
 
             return Ok(repairOrder);
         }
+        
+        // GET: api/RecycleOrders/route
+        [Route("api/RepairOrders/range")]
+        public IQueryable<RepairOrder> GetRepairOrders(int startState, int endState)
+        {
+            
+            return db.RepairOrders.Where(e=>((startState <= (int)e.State ) && ((int)e.State < endState)));
+        }
 
         // PUT: api/RepairOrders/5
         [ResponseType(typeof(void))]
