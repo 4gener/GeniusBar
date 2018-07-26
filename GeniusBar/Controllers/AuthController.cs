@@ -158,6 +158,14 @@ namespace GeniusBar.Controllers
             
             User user = db.Users.First(u => u.Email == data.Email);
 
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, new
+                {
+                    message = "用户不存在"
+                });
+            }
+
             if (BCrypt.Net.BCrypt.Verify(data.Password, user.Password))
             {
                 HttpResponseMessage res = Request.CreateResponse(user);
