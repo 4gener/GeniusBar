@@ -178,7 +178,7 @@ namespace GeniusBar.Controllers
                     Model = a.Name,
                     Brand = b.Name,
                     a.count
-                }).OrderBy(e => e.count);
+                }).OrderByDescending(e => e.count);
                 
   
             
