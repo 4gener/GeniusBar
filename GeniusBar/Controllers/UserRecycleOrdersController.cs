@@ -233,7 +233,14 @@ namespace GeniusBar.Controllers
             return CreatedAtRoute("GetUserRecycleOrder", new { id = order.ID }, order);
         }
         
-        
+        // GET: api/user/recycle_choice
+        [Route("api/user/recycle_choice/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetUserRecycleChoice(int id)
+        {
+            var re = db.RecycleOrder_RecycleEvaluatonChoice.Where(e => e.Rec_order_ID == id).Include("RecycleEvaluationChoice");
+            return Ok(re.ToList());
+        }
         
 
         
