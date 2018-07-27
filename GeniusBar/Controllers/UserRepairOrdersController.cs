@@ -95,10 +95,11 @@ namespace GeniusBar.Controllers
 
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID !=3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID !=3 && (order.Engineer_ID== cookieUser.ID && cookieUser.Role_ID ==2))
             {
                 return Unauthorized();
             }
+
 
             order.Customer_note = repairOrder.Customer_note;
             order.Service_time = repairOrder.Service_time;
@@ -128,6 +129,7 @@ namespace GeniusBar.Controllers
             return StatusCode(HttpStatusCode.NoContent);            
 
         }
+
         
         public class timeData
         {
@@ -138,7 +140,7 @@ namespace GeniusBar.Controllers
         [Route("api/user/repair_order_service_time/{id}")]
         [HttpPut]
         [ResponseType(typeof(RepairOrder))]
-        public IHttpActionResult PutRecycleOrderTIme(int id, timeData recycleOrder)
+        public IHttpActionResult PutRepairOrderTIme(int id, timeData repairOrder)
         {
             if (!ModelState.IsValid)
             {
@@ -148,13 +150,13 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID == cookieUser.ID && cookieUser.Role_ID == 2))
             {
                 return Unauthorized();
             }
 
 
-            order.Service_time = recycleOrder.Service_time;
+            order.Service_time = repairOrder.Service_time;
 
             
             
@@ -264,7 +266,7 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3)
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID == cookieUser.ID && cookieUser.Role_ID == 2))
             {
                 return Unauthorized();
             }
