@@ -95,7 +95,7 @@ namespace GeniusBar.Controllers
 
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID !=3 && (order.Engineer_ID== cookieUser.ID && cookieUser.Role_ID ==2))
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID != cookieUser.ID))
             {
                 return Unauthorized();
             }
@@ -150,7 +150,7 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID == cookieUser.ID && cookieUser.Role_ID == 2))
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID != cookieUser.ID))
             {
                 return Unauthorized();
             }
@@ -266,7 +266,7 @@ namespace GeniusBar.Controllers
             var order = db.RepairOrders.Find(id);
             var cookieUser = getCooikedUser();
 
-            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID == cookieUser.ID && cookieUser.Role_ID == 2))
+            if (order.Customer_ID != cookieUser.ID && cookieUser.Role_ID != 3 && (order.Engineer_ID != cookieUser.ID))
             {
                 return Unauthorized();
             }
