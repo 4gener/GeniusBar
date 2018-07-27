@@ -70,9 +70,9 @@ namespace GeniusBar.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage res = Request.CreateResponse(user);
-                var cookie = new CookieHeaderValue("GB", user.COOKIE);
-                cookie.Path = "/";
-                res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+                //var cookie = new CookieHeaderValue("GB", user.COOKIE);
+                //cookie.Path = "/";
+                //res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
             catch (Exception e)
@@ -122,9 +122,9 @@ namespace GeniusBar.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage res = Request.CreateResponse(user);
-                var cookie = new CookieHeaderValue("GB", user.COOKIE);
-                cookie.Path = "/";
-                res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
+                //var cookie = new CookieHeaderValue("GB", user.COOKIE);
+                //cookie.Path = "/";
+                //res.Headers.AddCookies(new CookieHeaderValue[] {cookie});
                 return res;
             }
             catch (Exception e)
