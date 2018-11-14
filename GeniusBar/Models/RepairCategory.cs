@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace GeniusBar.Models
 {
@@ -23,6 +24,7 @@ namespace GeniusBar.Models
         [MaxLength(200)]
         public string Description { get; set; }
 
+        [JsonIgnore]
         public ICollection<RepairChoice> RepairChoices { get; set; }
     }
 }

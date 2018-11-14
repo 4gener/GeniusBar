@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace GeniusBar.Models
 {
@@ -27,10 +28,12 @@ namespace GeniusBar.Models
         [ForeignKey("LaptopBrand")]
         [Required]
         public int Brand_ID { get; set; }
-        public LaptopBrand LaptopBrand { get; set; }
+        public virtual LaptopBrand LaptopBrand { get; set; }
 
+        [JsonIgnore]
         public ICollection<RecycleEvaluationCategory> RecycleEvaluationCategories { get; set; }
 
+        [JsonIgnore]
         public ICollection<RepairChoice> RepairChoices { get; set; }
 
     }
